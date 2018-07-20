@@ -1,16 +1,11 @@
 version: '2.4'
+
+# simple composition where testing against one browser is required
+
 services:
-  chrome:
-    image: selenium/node-chrome:3.13.0
-    shm_size: 2g
-    environment:
-      HUB_HOST: hub 
-    depends_on: 
-      - hub
   hub:
-    image: selenium/hub:3.13.0
-    ports:
-      - "4444:4444"
+    image: selenium/standalone-chrome:3.13.0
+    shm_size: 2g
   angular:
     image: node:6-alpine
     volumes:
@@ -21,9 +16,8 @@ services:
     image: node:6-alpine
     command: ./node_modules/protractor/bin/protractor ./docker-selenium-grid-conf.js
     working_dir: /protractor
-    volumes:
+    volumes: 
       - "./:/protractor"
     depends_on: 
       - angular
-      - chrome
       - hub

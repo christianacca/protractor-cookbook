@@ -1,10 +1,13 @@
 {
     "name": "protractor-docker-setup",
-    "dependencies": {
-        "protractor": "4.0.9"
-    },
     "scripts": {
-        "test": "docker run -it --rm --network=protractortest -v /dev/shm:/dev/shm -v $(pwd):/protractor jozzhart/node-6-protractor ./docker-selenium-grid-conf.js",
-        "start": "node ./app"
+        "pretest": "yarn install",
+        "test": "docker-compose up --abort-on-container-exit --exit-code-from e2e",
+        "start": "node ./app",
+        "stop": "docker-compose down -v"
+    },
+    "dependencies": {
+        "jasmine-reporters": "^2.3.1",
+        "protractor": "^5.4.0"
     }
 }
