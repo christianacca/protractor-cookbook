@@ -1,6 +1,6 @@
 var env = {
-  // 'app' === name of service started in ../docker-compose.yml
-  url: 'http://app:8080'
+  // 'angular' === name of service started in ../docker-compose.yml
+  url: 'http://angular:8080'
 }
 
 describe('slow calculator', () => {
