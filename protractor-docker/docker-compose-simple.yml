@@ -7,11 +7,11 @@ services:
     image: selenium/standalone-chrome:3.13.0
     shm_size: 2g
   angular:
-    image: node:6-alpine
-    volumes:
-      - ./app:/var/www
-    working_dir: /var/www
-    command: ["npm", "start"]
+    image: node:6.14-slim
+    working_dir: /src
+    command: node index.js
+    volumes: 
+      - "../testapp:/src"
   e2e:
     image: node:6-alpine
     command: ./node_modules/protractor/bin/protractor ./docker-selenium-grid-conf.js

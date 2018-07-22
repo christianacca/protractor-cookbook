@@ -1,9 +1,9 @@
 {
     "name": "protractor-docker-setup",
     "scripts": {
-        "pretest": "yarn install",
+        "pretest": "yarn install && cd ../testapp && yarn install",
         "test": "docker-compose up --abort-on-container-exit --exit-code-from e2e",
-        "start": "node ./app",
+        "start": "docker-compose run -d -p 8080:8080 angular",
         "stop": "docker-compose down -v"
     },
     "dependencies": {
